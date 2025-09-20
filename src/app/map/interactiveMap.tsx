@@ -40,7 +40,7 @@ function Circle({
     return (
         <>
             <div
-                className={`absolute flex justify-center items-center -translate-1/2 rounded-full border-2 ${selected ? "border-white" : "border-black"} hover:shadow-[0px_0px_8px_0px_white]`}
+                className={`absolute select-none flex justify-center items-center -translate-1/2 rounded-full border-2 ${selected ? "border-white" : "border-black"} hover:shadow-[0px_0px_8px_0px_white]`}
                 onClick={onClick}
                 onContextMenu={onRightClick}
                 style={{
