@@ -61,7 +61,7 @@ export default function Page() {
     }
 
     return (
-        <div className="flex justify-center flex-col md:flex-row w-full mx-4">
+        <div className="flex justify-center flex-col md:flex-row w-full mx-4 space-x-4">
             <div className="flex items-start md:items-center flex-col w-full md:w-2xl">
                 <form className="flex flex-col md:flex-row md:space-x-2">
                     {optionList}
