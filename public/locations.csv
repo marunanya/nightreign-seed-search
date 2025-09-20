@@ -1,0 +1,48 @@
+Location,Spawn,X,Y,Text Position,Default,Mountaintop,Crater,Rotted Woods,Noklateo
+Castle - Castle,,0.455,0.5525,Top,1,1,1,1,
+Major Base - South Lake,,0.3554,0.9075,Center,1,1,1,1,
+Major Base - Groveside,,0.1904,0.7312,Center,1,1,1,1,
+Major Base - Gatefront,,0.2479,0.6075,Center,1,1,1,1,
+Major Base - Stormhill North of Gate,,0.2004,0.4612,Center,1,,1,1,1
+Major Base - Alexander Spot,,0.3904,0.2537,Center,1,,,1,1
+Major Base - Northwest Stormhill,,0.1229,0.23,Center,1,,1,1,1
+Major Base - Northeast Stormhill,,0.3554,0.0887,Center,1,,,1,1
+Major Base - South Mistwood,,0.8442,0.8525,Center,1,1,1,,1
+Major Base - Waypoint Ruins,,0.6504,0.7925,Center,1,1,1,,1
+Major Base - Minor Erdtree,,0.8517,0.7,Center,1,1,1,,1
+Major Base - West Mistwood,,0.6654,0.6488,Center,1,1,1,,1
+Major Base - Northwest Mistwood,,0.7092,0.4863,Center,1,1,,1,1
+Major Base - Artist's Shack,,0.6229,0.4175,Center,1,1,,1,1
+Major Base - Northeast Mistwood,,0.8904,0.41,Center,1,1,1,1,1
+Major Base - Summonwater Approach,,0.6817,0.2387,Center,1,1,,1,1
+Major Base - Summonwater,,0.8079,0.1313,Center,1,1,1,1,1
+Minor Base - Far Southwest,1,0.0879,0.8325,Center,1,1,1,1,
+Minor Base - Lake,,0.445,0.8125,Right,1,1,1,1,
+Minor Base - Stormhill South of Gate,1,0.0867,0.59,Center,1,1,1,1,
+Minor Base - Above Stormhill Tunnel Entrance,1,0.3079,0.385,Center,1,,,1,1
+Minor Base - West of Warmaster's Shack,1,0.1079,0.3475,Center,1,,1,1,1
+Minor Base - Southeast of Lake,1,0.5892,0.945,Center,1,1,1,,1
+Minor Base - East of Cavalry Bridge,1,0.5717,0.7025,Center,1,1,1,,1
+Minor Base - Minor Erdtree,1,0.9217,0.6375,Center,1,1,1,,1
+Minor Base - Below Summonwater Hawk,1,0.7617,0.345,Center,1,1,1,1,1
+Minor Base - Third Church,,0.8967,0.3225,Center,1,1,1,1,1
+Minor Base - Northeast of Saintsbridge,1,0.5542,0.135,Center,1,1,,1,1
+Evergaol - Northwest of Lake,,0.2854,0.7175,Right,1,1,1,1,
+Evergaol - Murkwater Terminus,,0.4254,0.3575,Bottom,1,,,1,1
+Evergaol - Stormhill,,0.0379,0.2662,Center,1,,1,1,1
+Evergaol - Highroad,,0.4717,0.0988,Center,1,,,1,1
+Evergaol - East of Lake,,0.6654,0.8875,Center,1,1,1,,1
+Evergaol - Mistwood,,0.8979,0.5038,Center,1,1,1,1,1
+Evergaol - Northeast Tunnel Entrance,,0.6804,0.3275,Center,1,1,,1,1
+Arena Boss - Castle Basement,,0.48,0.5925,Right,1,1,1,1,
+Field Boss - Castle Rooftop,,0.43,0.5925,Left,1,1,1,1,
+Field Boss - Far Southwest of Lake,,0.2292,0.9637,Center,1,1,1,1,
+Field Boss - Lake,,0.395,0.8125,Left,1,1,1,1,
+Field Boss - North of Stormhill Tunnel Entrance,,0.2442,0.3513,Center,1,,1,1,1
+Field Boss - North of Murkwater Terminus,,0.4654,0.3225,Center,1,,,1,1
+Field Boss - Stormhill Spectral Hawk,,0.2704,0.1588,Center,1,,,1,1
+Field Boss - Northwest Stormhill Cliffside,,0.2229,0.1,Center,1,,1,1,1
+Field Boss - Mistwood Spectral Hawk,,0.7617,0.9025,Center,1,1,1,,1
+Field Boss - North Mistwood,,0.855,0.54,Bottom,1,1,1,,1
+Field Boss - East of Murkwater Terminus,,0.5704,0.3538,Center,1,1,,1,1
+Field Boss - Northwest of Summonwater,,0.6904,0.1237,Center,1,1,,1,1
