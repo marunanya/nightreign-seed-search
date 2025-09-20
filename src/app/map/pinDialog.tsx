@@ -17,9 +17,9 @@ export default function PinDialog({ itemTable, onSelect }: { itemTable: string[]
         </div> : null
     ))
     return (
-        <div className="absolute w-screen h-screen left-0 top-0 flex items-center justify-center" style={{ zIndex: 50 }}>
-            <div className="absolute w-full h-full bg-black opacity-25" onClick={() => onSelect ? onSelect("") : 0}></div>
-            <div className="absolute select-none bg-white dark:bg-gray-900 rounded-md shadow-black dark:shadow-white shadow-md">
+        <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 50 }}>
+            <div className="fixed inset-0 bg-gray-500/75" onClick={() => onSelect ? onSelect("") : 0}></div>
+            <div className="absolute select-none bg-white dark:bg-black rounded-md shadow-black shadow-md">
                 <div className="flex flex-row items-center w-full px-2 py-2 space-x-2 border-b-2 border-gray-200 dark:border-gray-800">
                     <Search className="text-gray-400 p-0.5" />
                     <input className="w-full focus:outline-hidden py-0.5" placeholder="Search" onChange={(e) => setSearchText(e.currentTarget.value)} />
