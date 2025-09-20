@@ -165,14 +165,16 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
         })
         const pinValues = getPossiblePinValues(patterns, location.name).sort()
         if (location.type == "Major Base") {
+            const majorBaseTypes = pinValues.length > 1 ? getMajorBaseTypes(pinValues) : []
+            const pinTypes = majorBaseTypes.length > 1 ? getPinTypes(pinValues) : []
             setDialogItemTable([
-                getPinTypes(pinValues),
-                getMajorBaseTypes(pinValues),
+                pinTypes,
+                majorBaseTypes,
                 pinValues,
             ])
         } else if (location.type == "Minor Base") {
             setDialogItemTable([
-                getPinTypes(pinValues),
+                pinValues.length > 1 ? getPinTypes(pinValues) : [],
                 pinValues,
             ])
         } else {
