@@ -52,7 +52,7 @@ function Circle({
                 }}
             >
                 {!flag ? null : (
-                    <FlagTriangleRight size={`${size * 0.7}px`} strokeWidth="3px" />
+                    <FlagTriangleRight className="text-black" size={`${size * 0.7}px`} strokeWidth="3px" />
                 )}
             </div>
             {(() => {
