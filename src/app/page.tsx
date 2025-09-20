@@ -78,7 +78,7 @@ export default function Page() {
                     {mapInfo.spawnPoint.length > 0 && mapInfo.spawnPoint != "Any" ? null : <button className="px-1 rounded-md text-black border-2 bg-gray-300 disabled:opacity-75 enabled:hover:bg-gray-400 enabled:active:bg-gray-500" onClick={handleSkipSpawn}>{mapInfo.spawnPoint == "Any" ? "Set Spawn Point" : "Unknown Spawn Point"}</button>}
                 </div>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full md:w-60">
                 {matchedLinks}
             </div>
         </div>
