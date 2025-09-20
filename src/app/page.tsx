@@ -29,7 +29,6 @@ export default function Page() {
     ))
 
     useEffect(() => {
-        // Load
         fetchLocations().then((data) => {
             setLocations(data)
         })
@@ -48,6 +47,7 @@ export default function Page() {
     }
 
     function handleInfoChange(info: MapInfo) {
+        setCurrentPatternId("")
         setMapInfo(info)
     }
 
