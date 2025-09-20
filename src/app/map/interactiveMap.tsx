@@ -198,7 +198,7 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
             <div ref={containerRef} className="relative w-full aspect-square">
                 <Image
                     className="rounded-md"
-                    src={`/nightreign-seed-search/maps/${info.shiftingEarth}2.webp`}
+                    src={`/nightreign-seed-search/maps/${info.shiftingEarth}.webp`}
                     alt="Map"
                     width={800}
                     height={800}
