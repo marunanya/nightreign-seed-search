@@ -12,6 +12,7 @@ const colorTable: Record<string, string> = {
     "Arena Boss": "#C62828",
     "Field Boss": "#C62828",
     "Rooftop Boss": "#6A1B9A",
+    "Nightlord": "#283593",
 }
 
 function Circle({
@@ -112,7 +113,7 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
                 color={colorTable[location.name == "Field Boss - Castle Rooftop" ? "Rooftop Boss" : location.type]}
                 x={location.x}
                 y={location.y}
-                size={containerSize * 0.05}
+                size={location.name == "Nightlord" ? containerSize * 0.08 : containerSize * 0.05}
                 selected={info.pins[location.name] != undefined && info.pins[location.name] != "Any"}
                 flag={location.spawn && location.name.endsWith(info.spawnPoint)}
                 text={text}
