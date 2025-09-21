@@ -1,6 +1,6 @@
 import Papa from 'papaparse';
 
-const majorBaseIconTable: Record<string, string> = {
+const majorBaseMarkTable: Record<string, string> = {
     "Camp - Banished Knights": "Camp - Normal",
     "Camp - Elder Lion": "Camp - Normal",
     "Camp - Flame Chariots": "Camp - Fire",
@@ -103,7 +103,7 @@ export function checkPattern(pattern: Record<string, string>, mapInfo: MapInfo) 
         if (
             value != "Any" &&
             pattern[locationName] != value &&
-            majorBaseIconTable[pattern[locationName]] != value &&
+            majorBaseMarkTable[pattern[locationName]] != value &&
             pattern[locationName].split(" - ")[0] != value
         ) {
             return false
@@ -128,6 +128,6 @@ export function getPinTypes(pinValues: string[]) {
 }
 
 export function getMajorBaseTypes(pinValues: string[]) {
-    return [...new Set(pinValues.map((value) => majorBaseIconTable[value]))].filter((value) => value && !value.startsWith("Map"))
+    return [...new Set(pinValues.map((value) => majorBaseMarkTable[value]))].filter((value) => value && !value.startsWith("Map"))
 }
 
