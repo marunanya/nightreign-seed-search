@@ -33,3 +33,9 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
 }
+
+@media (max-width: 640px) {
+  .text-stroke {
+    -webkit-text-stroke: 2px transparent;
+  }
+}

@@ -67,11 +67,12 @@ function Circle({
                 }[textPosition || "Center"]
                 return (
                     <span
-                        className={`absolute ${align} break-normal text-xs md:text-sm pointer-events-none text-stroke p-0.5`}
+                        className={`absolute ${align} break-normal pointer-events-none text-stroke p-0.5`}
                         style={{
                             left: `${x * 100}%`,
                             top: `${y * 100}%`,
                             width: `${size * 3}px`,
+                            fontSize: `${size * 0.4}px`,
                             zIndex: 10,
                         }}
                     >
