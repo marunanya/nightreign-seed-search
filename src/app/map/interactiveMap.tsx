@@ -116,7 +116,7 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
                 y={location.y}
                 size={location.name == "Nightlord" ? containerSize * 0.08 : containerSize * 0.05}
                 selected={info.pins[location.name] != undefined && info.pins[location.name] != "Any"}
-                flag={location.spawn && location.name.endsWith(info.spawnPoint)}
+                flag={location.spawn && (info.spawnPoint == "" || location.name == info.spawnPoint)}
                 text={text}
                 textPosition={location.textPosition}
                 onClick={(e) => { e.stopPropagation(); handleCircleClick(location) }}
@@ -142,7 +142,7 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
         if (!onInfoChange) {
             return
         }
-        if (location.spawn && location.name.endsWith(info.spawnPoint)) {
+        if (location.spawn && location.name == info.spawnPoint) {
             info.spawnPoint = ""
         }
         info.pins[location.name] = "Any"
@@ -154,7 +154,7 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
             return
         }
         if (info.spawnPoint == "") {
-            info.spawnPoint = location.name.split(" - ")[1]
+            info.spawnPoint = location.name
             onInfoChange({ ...info });
             return
         }

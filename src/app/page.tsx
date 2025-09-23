@@ -43,7 +43,17 @@ export default function Page() {
 
     function handleSelectShiftingEarth(se: string) {
         mapInfo.shiftingEarth = se
-        handleReset()
+        for (const location of locations) {
+            if (!location[se]) {
+                if (location.name == mapInfo.spawnPoint) {
+                    mapInfo.spawnPoint = ""
+                }
+                if (mapInfo.pins[location.name] != undefined) {
+                    delete mapInfo.pins[location.name]
+                }
+            }
+        }
+        handleInfoChange({ ...mapInfo, pins: { ...mapInfo.pins } })
     }
 
     function handleInfoChange(info: MapInfo) {

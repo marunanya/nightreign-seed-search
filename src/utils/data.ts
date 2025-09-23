@@ -89,14 +89,14 @@ export async function fetchPatterns() {
     return patterns
 }
 
-export function checkPattern(pattern: Record<string, string>, mapInfo: MapInfo) {
-    if (mapInfo.spawnPoint == "") {
+export function checkPattern(pattern: Record<string, string>, mapInfo: MapInfo, spawnPointShort: string) {
+    if (spawnPointShort == "") {
         return false
     }
     if (mapInfo.shiftingEarth != pattern["Shifting Earth"]) {
         return false
     }
-    if (mapInfo.spawnPoint != "Any" && mapInfo.spawnPoint != pattern["Spawn Point"]) {
+    if (spawnPointShort != "Any" && spawnPointShort != pattern["Spawn Point"]) {
         return false
     }
     for (const [locationName, value] of Object.entries(mapInfo.pins)) {
@@ -116,7 +116,7 @@ export function getPossiblePatterns(patterns: Record<string, string>[], mapInfo:
     if (mapInfo.spawnPoint == "") {
         return []
     }
-    return patterns.filter((pattern) => checkPattern(pattern, mapInfo))
+    return patterns.filter(pattern => checkPattern(pattern, mapInfo, mapInfo.spawnPoint.split(" - ")[1] || ""))
 }
 
 export function getPossiblePinValues(patterns: Record<string, string>[], locationName: string) {
