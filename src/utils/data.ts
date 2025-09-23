@@ -116,7 +116,7 @@ export function getPossiblePatterns(patterns: Record<string, string>[], mapInfo:
     if (mapInfo.spawnPoint == "") {
         return []
     }
-    return patterns.filter(pattern => checkPattern(pattern, mapInfo, mapInfo.spawnPoint.split(" - ")[1] || ""))
+    return patterns.filter(pattern => checkPattern(pattern, mapInfo, mapInfo.spawnPoint.split(" - ")[1] || mapInfo.spawnPoint))
 }
 
 export function getPossiblePinValues(patterns: Record<string, string>[], locationName: string) {
