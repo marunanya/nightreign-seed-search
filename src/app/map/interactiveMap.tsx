@@ -165,7 +165,11 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
             spawnPoint: info.spawnPoint,
             pins: { ...info.pins, [location.name]: "Any" }
         })
-        const pinValues = getPossiblePinValues(patterns, location.name).sort()
+        const pinValues = getPossiblePinValues(patterns, location.name)
+        if (location.name != "Nightlord") {
+            console.log(location)
+            pinValues.sort()
+        }
         if (location.type == "Major Base") {
             const majorBaseTypes = pinValues.length > 1 ? getMajorBaseTypes(pinValues) : []
             const pinTypes = majorBaseTypes.length > 1 ? getPinTypes(pinValues) : []
