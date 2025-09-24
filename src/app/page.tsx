@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import InteractiveMap from "./map/interactiveMap";
 
 export default function Page() {
-    const [mapInfo, setMapInfo] = useState<MapInfo>({ shiftingEarth: shiftingEarths[0], spawnPoint: "", pins: {} })
+    const [mapInfo, setMapInfo] = useState<MapInfo>({ shiftingEarth: shiftingEarths[0], spawnPoint: "Any", pins: {} })
     const [locations, setLocations] = useState<Location[]>([]);
     const [patterns, setPatterns] = useState<Record<string, string>[]>([]);
     const [currentPatternId, setCurrentPatternId] = useState("")
@@ -63,7 +63,7 @@ export default function Page() {
 
     function handleReset() {
         setCurrentPatternId("")
-        setMapInfo({ ...mapInfo, spawnPoint: "", pins: {} })
+        setMapInfo({ ...mapInfo, spawnPoint: "Any", pins: {} })
     }
 
     function handleSkipSpawn() {
