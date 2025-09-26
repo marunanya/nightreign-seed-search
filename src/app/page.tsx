@@ -18,6 +18,10 @@ export default function Page() {
     ))
 
     const matchedPatterns = getPossiblePatterns(patterns, mapInfo)
+    if (matchedPatterns.length == 1 && currentPatternId != matchedPatterns[0]["ID"]) {
+        setCurrentPatternId(matchedPatterns[0]["ID"])
+    }
+
     const matchedLinks = matchedPatterns.length > 8 ? null : matchedPatterns.map((pattern, index) => (
         <a key={index} target="_blank"
             onClick={() => handlePatternSelect(pattern["ID"])}
@@ -83,6 +87,13 @@ export default function Page() {
                     allPatterns={patterns}
                     onInfoChange={handleInfoChange}
                 />
+                {currentPatternId != "" ? (
+                    <a target="_blank"
+                        href={`https://thefifthmatt.github.io/nightreign/pattern/${currentPatternId}.jpg`}
+                        className={`cursor-pointer select-none text-blue-800 dark:text-blue-300 underline hover:text-blue-400`}
+                    >
+                        Open Full Map
+                    </a>) : null}
                 <div className="flex gap-2 my-1 w-full">
                     <button className="px-1 rounded-md text-black border-2 bg-gray-300 disabled:opacity-75 enabled:hover:bg-gray-400 enabled:active:bg-gray-500" onClick={handleReset}>Reset</button>
                     {mapInfo.spawnPoint.length > 0 && mapInfo.spawnPoint != "Any" ? null : <button className="px-1 rounded-md text-black border-2 bg-gray-300 disabled:opacity-75 enabled:hover:bg-gray-400 enabled:active:bg-gray-500" onClick={handleSkipSpawn}>{mapInfo.spawnPoint == "Any" ? "Set Spawn Point" : "Unknown Spawn Point"}</button>}
