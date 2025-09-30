@@ -131,3 +131,20 @@ export function getMajorBaseTypes(pinValues: string[]) {
     return [...new Set(pinValues.map((value) => majorBaseMarkTable[value]))].filter((value) => value && !value.startsWith("Map"))
 }
 
+export function getEigenLocationNames(patterns: Record<string, string>[], locations: Location[]) {
+    return [
+        locations.filter(location => {
+            const eigen = [...new Set(patterns.map(pattern => pattern[location.name].split(" - ")[0]))].length == patterns.length
+            return eigen
+        }).map(location => location.name),
+        locations.filter(location => {
+            const eigen = [...new Set(patterns.map(pattern => majorBaseMarkTable[pattern[location.name]]))].length == patterns.length
+            return eigen
+        }).map(location => location.name),
+        locations.filter(location => {
+            const eigen = [...new Set(patterns.map(pattern => pattern[location.name]))].length == patterns.length
+            return eigen
+        }).map(location => location.name),
+    ]
+}
+

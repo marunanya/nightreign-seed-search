@@ -1,4 +1,4 @@
-import { getMajorBaseTypes, getPinTypes, getPossiblePatterns, getPossiblePinValues, Location, MapInfo } from "@/utils/data";
+import { getEigenLocationNames, getMajorBaseTypes, getPinTypes, getPossiblePatterns, getPossiblePinValues, Location, MapInfo } from "@/utils/data";
 import { FlagTriangleRight } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
@@ -20,8 +20,9 @@ function Circle({
     x,
     y,
     size,
-    selected,
+    border,
     flag,
+    alert,
     text,
     textPosition,
     onClick,
@@ -31,8 +32,9 @@ function Circle({
     x: number,
     y: number,
     size: number,
-    selected: boolean,
+    border: string,
     flag: boolean,
+    alert: number,
     text?: string,
     textPosition?: "Top" | "Bottom" | "Left" | "Right" | "Center",
     onClick?: (e: React.MouseEvent) => void,
@@ -41,7 +43,7 @@ function Circle({
     return (
         <>
             <div
-                className={`absolute select-none flex justify-center items-center -translate-1/2 rounded-full border-2 ${selected ? "border-white" : "border-black"} hover:shadow-[0px_0px_8px_0px_white]`}
+                className={`absolute select-none flex justify-center items-center -translate-1/2 rounded-full border-2 hover:shadow-[0px_0px_8px_0px_white]`}
                 onClick={onClick}
                 onContextMenu={onRightClick}
                 style={{
@@ -50,11 +52,14 @@ function Circle({
                     width: `${size}px`,
                     height: `${size}px`,
                     background: color,
+                    borderColor: border,
                 }}
             >
-                {!flag ? null : (
-                    <FlagTriangleRight className="text-black" size={`${size * 0.7}px`} strokeWidth="3px" />
-                )}
+                {!flag ?
+                    alert == 0 || text ?
+                        null :
+                        <span className="text-white">{alert}</span> :
+                    <FlagTriangleRight className="text-black" size={`${size * 0.7}px`} strokeWidth="3px" />}
             </div>
             {(() => {
                 if (!text) return null
@@ -96,6 +101,8 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
     const [dialogItemTable, setDialogItemTable] = useState<string[][]>([]);
     const [currentLocationName, setCurrentLocationName] = useState("")
 
+    const matchedPatterns = getPossiblePatterns(allPatterns, info)
+
     const pinnedLocations = locations.map((location, index) => {
         if (!location[info.shiftingEarth]) {
             return null
@@ -108,6 +115,8 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
             info.pins[location.name] != "Any" ?
                 info.pins[location.name] :
                 undefined
+        const eigenLocationNames = getEigenLocationNames(matchedPatterns, locations)
+        const priority = (eigenLocationNames.length - eigenLocationNames.findIndex(names => names.includes(location.name))) % (eigenLocationNames.length + 1)
         return (
             <Circle
                 key={index}
@@ -115,8 +124,9 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
                 x={location.x}
                 y={location.y}
                 size={location.name == "Nightlord" ? containerSize * 0.08 : containerSize * 0.05}
-                selected={info.pins[location.name] != undefined && info.pins[location.name] != "Any"}
+                border={info.pins[location.name] != undefined && info.pins[location.name] != "Any" ? "white" : "black"}
                 flag={location.spawn && (info.spawnPoint == "" || location.name == info.spawnPoint)}
+                alert={priority}
                 text={text}
                 textPosition={location.textPosition}
                 onClick={(e) => { e.stopPropagation(); handleCircleClick(location) }}
