@@ -1,4 +1,4 @@
-import { getEigenLocationNames, getMajorBaseTypes, getPinTypes, getPossiblePatterns, getPossiblePinValues, Location, MapInfo } from "@/utils/data";
+import { getEigenTable, getLocationPriority, getMajorBaseTypes, getPinTypes, getPossiblePatterns, getPossiblePinValues, Location, MapInfo } from "@/utils/data";
 import { FlagTriangleRight } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
@@ -102,6 +102,7 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
     const [currentLocationName, setCurrentLocationName] = useState("")
 
     const matchedPatterns = getPossiblePatterns(allPatterns, info)
+    const eigenTable = getEigenTable(matchedPatterns, locations)
 
     const pinnedLocations = locations.map((location, index) => {
         if (!location[info.shiftingEarth]) {
@@ -115,8 +116,7 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
             info.pins[location.name] != "Any" ?
                 info.pins[location.name] :
                 undefined
-        const eigenLocationNames = getEigenLocationNames(matchedPatterns, locations)
-        const priority = (eigenLocationNames.length - eigenLocationNames.findIndex(names => names.includes(location.name))) % (eigenLocationNames.length + 1)
+        const priority = getLocationPriority(eigenTable, location.name)
         return (
             <Circle
                 key={index}
@@ -180,18 +180,19 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
             console.log(location)
             pinValues.sort()
         }
+        const priority = getLocationPriority(eigenTable, location.name)
         if (location.type == "Major Base") {
-            const majorBaseTypes = pinValues.length > 1 ? getMajorBaseTypes(pinValues) : []
-            const pinTypes = majorBaseTypes.length > 1 ? getPinTypes(pinValues) : []
+            const majorBaseTypes = getMajorBaseTypes(pinValues)
+            const pinTypes = getPinTypes(pinValues)
             setDialogItemTable([
-                pinTypes,
-                majorBaseTypes,
-                pinValues,
+                majorBaseTypes.length > 1 ? pinTypes : [],
+                pinValues.length > 1 && priority < 3 ? majorBaseTypes : [],
+                pinValues.length == 1 || priority < 2 ? pinValues : [],
             ])
         } else if (location.type == "Minor Base") {
             setDialogItemTable([
                 pinValues.length > 1 ? getPinTypes(pinValues) : [],
-                pinValues,
+                pinValues.length == 1 || priority < 3 ? pinValues : [],
             ])
         } else {
             setDialogItemTable([
