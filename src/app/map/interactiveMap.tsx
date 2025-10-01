@@ -58,8 +58,8 @@ function Circle({
                 {!flag ?
                     alert == 0 || text ?
                         null :
-                        <span className="text-white">{alert}</span> :
-                    <FlagTriangleRight className="text-black" size={`${size * 0.7}px`} strokeWidth="3px" />}
+                        <span className={color == colorTable["Minor Base"] ? "text-black" : "text-white"} style={{ fontSize: `${size * 0.55}px` }}>{alert}</span> :
+                    <FlagTriangleRight className="text-black" size={`${size * 0.6}px`} strokeWidth="3px" />}
             </div>
             {(() => {
                 if (!text) return null
