@@ -111,11 +111,8 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
         if (info.spawnPoint == "" && !location.spawn) {
             return null
         }
-        const text = patternId != "" ?
-            allPatterns[parseInt(patternId)][location.name] :
-            info.pins[location.name] != "Any" ?
-                info.pins[location.name] :
-                undefined
+        const pinValue = patternId != "" ? allPatterns[parseInt(patternId)][location.name] : info.pins[location.name]
+        const text = !pinValue || pinValue == "Any" || pinValue == "None" || pinValue.startsWith("Map") ? undefined : pinValue
         const priority = getLocationPriority(eigenTable, location.name)
         return (
             <Circle
@@ -177,8 +174,11 @@ export default function InteractiveMap({ info, patternId, locations, allPatterns
         })
         const pinValues = getPossiblePinValues(patterns, location.name)
         if (location.name != "Nightlord") {
-            console.log(location)
-            pinValues.sort()
+            pinValues.sort((a, b) => {
+                if (a == "None") return -1
+                if (b == "None") return 1
+                return a.localeCompare(b)
+            })
         }
         const priority = getLocationPriority(eigenTable, location.name)
         if (location.type == "Major Base") {

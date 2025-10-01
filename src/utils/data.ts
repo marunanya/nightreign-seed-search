@@ -100,6 +100,15 @@ export function checkPattern(pattern: Record<string, string>, mapInfo: MapInfo, 
         return false
     }
     for (const [locationName, value] of Object.entries(mapInfo.pins)) {
+        if (value == "None") {
+            if (pattern[locationName] == null) {
+                return true
+            }
+            if (pattern[locationName].startsWith("Map")) {
+                return true
+            }
+            return false
+        }
         if (
             value != "Any" &&
             pattern[locationName] != value &&
@@ -120,15 +129,15 @@ export function getPossiblePatterns(patterns: Record<string, string>[], mapInfo:
 }
 
 export function getPossiblePinValues(patterns: Record<string, string>[], locationName: string) {
-    return [...new Set(patterns.map((pattern) => pattern[locationName]))].filter((value) => value && !value.startsWith("Map"))
+    return [...new Set(patterns.map((pattern) => pattern[locationName]).map((value) => value == null || value.startsWith("Map") ? "None" : value))]
 }
 
 export function getPinTypes(pinValues: string[]) {
-    return [...new Set(pinValues.map((value) => value.split(" - ")[0]))].filter((value) => value && !value.startsWith("Map"))
+    return [...new Set(pinValues.map((value) => value.split(" - ")[0]))]
 }
 
 export function getMajorBaseTypes(pinValues: string[]) {
-    return [...new Set(pinValues.map((value) => majorBaseMarkTable[value]))].filter((value) => value && !value.startsWith("Map"))
+    return [...new Set(pinValues.map((value) => value == "None" ? value : majorBaseMarkTable[value]))]
 }
 
 export function getEigenTable(patterns: Record<string, string>[], locations: Location[]) {
