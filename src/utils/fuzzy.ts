@@ -1,4 +1,3 @@
-
 export function fuzzySearch(strings: string[], pattern: string) {
     const lowerPattern = pattern.toLowerCase()
     return strings.map(str => {
