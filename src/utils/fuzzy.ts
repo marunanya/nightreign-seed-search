@@ -13,7 +13,7 @@ function fuzzyScore(lowerStr: string, lowerPattern: string, upperMap: boolean[],
     let bestMatchedPositions: number[] = []
     for (let i = 0; i < lowerStr.length; ++i) {
         if (lowerStr[i] === lowerPattern[0]) {
-            const score = upperMap[i] ? 1 : (lowerStr.length - i) / lowerStr.length
+            const score = upperMap[offset + i] ? 1 : (lowerStr.length - i) / lowerStr.length
             const [tempScore, tempPositions] = lowerPattern.length == 1 ?
                 [baseScore + score, [...matchedPositions, offset + i]] :
                 fuzzyScore(lowerStr.substring(i + 1), lowerPattern.substring(1), upperMap, offset + i + 1, baseScore + score, [...matchedPositions, offset + i])
