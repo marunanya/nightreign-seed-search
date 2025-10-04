@@ -14,7 +14,9 @@ export default function PinDialog({ itemTable, onSelect }: { itemTable: string[]
         items.length > 0 ? <div key={index1} className="flex flex-col w-64 md:h-full md:overflow-y-auto scrollbar-hide px-1 pt-2 md:border-l-2 border-gray-200 dark:border-gray-800">
             {items.map(([str, _, positions], index2) => (
                 <div key={index2} onClick={() => { if (onSelect) onSelect(str) }} className="w-full p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 active:bg-gray-300 dark:active:bg-gray-700">
-                    {Array.from(str).map((char, index) => positions.indexOf(index) < 0 ? char : <span className="text-blue-500">{char}</span>)}
+                    {Array.from(str).map((char, index3) => positions.indexOf(index3) < 0 ?
+                        <span key={index3}>{char}</span> :
+                        <span key={index3} className="text-blue-500">{char}</span>)}
                 </div>
             ))}
         </div> : null
