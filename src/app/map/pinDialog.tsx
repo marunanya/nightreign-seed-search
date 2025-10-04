@@ -1,17 +1,20 @@
-import Fuse from "fuse.js"
+import { fuzzySearch } from "@/utils/fuzzy"
 import { Search } from "lucide-react"
 import { useState } from "react"
 
 export default function PinDialog({ itemTable, onSelect }: { itemTable: string[][], onSelect?: (item: string) => any }) {
     const [searchText, setSearchText] = useState("")
 
-    const matchedItemTable = searchText.length == 0 ? itemTable : itemTable.map(items => new Fuse(items).search(searchText).map(fr => fr.item))
+    const matchedItemTable = searchText.length == 0 ?
+        itemTable.map(items => items.map(item => [item, 1, []] as [string, number, number[]])) :
+        itemTable.map(items => fuzzySearch(items, searchText))
+    // const matchedItemTable = searchText.length == 0 ? itemTable : itemTable.map(items => new Fuse(items).search(searchText).map(fr => fr.item))
 
     const cols = matchedItemTable.map((items, index1) => (
         items.length > 0 ? <div key={index1} className="flex flex-col w-64 md:h-full md:overflow-y-auto scrollbar-hide px-1 pt-2 md:border-l-2 border-gray-200 dark:border-gray-800">
-            {items.map((item, index2) => (
-                <div key={index2} onClick={() => { if (onSelect) onSelect(item) }} className="w-full p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 active:bg-gray-300 dark:active:bg-gray-700">
-                    {item}
+            {items.map(([str, _, positions], index2) => (
+                <div key={index2} onClick={() => { if (onSelect) onSelect(str) }} className="w-full p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 active:bg-gray-300 dark:active:bg-gray-700">
+                    {Array.from(str).map((char, index) => positions.indexOf(index) < 0 ? char : <span className="text-blue-500">{char}</span>)}
                 </div>
             ))}
         </div> : null
